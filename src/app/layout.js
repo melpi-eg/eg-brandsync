@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
         /> */}
       </head>
       <body>
-        <ContextWrapper children={children} />
+        <ContextWrapper>{children}</ContextWrapper>
       </body>
     </html>
   );
