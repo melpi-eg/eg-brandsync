@@ -1,4 +1,3 @@
-"use client";
 import JSZip from "jszip";
 
 export const handleCreateAndDownloadZip = async (files) => {
