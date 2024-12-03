@@ -1,106 +1,49 @@
-"use client";
-import { useGSAP } from "@gsap/react";
-import React, { useRef } from "react";
-import gsap from "gsap";
+import React from "react";
 
-const BrowserPreview = () => {
-  const ref = useRef(null);
-
-  useGSAP(() => {
-    if (!ref.current) return;
-    gsap.from(ref.current, {
-      opacity: 0,
-      scale: 0,
-      duration: 0.5,
-    });
-  }, [ref.current]);
+const BrowserWindow = () => {
   return (
-    <>
-      <div className="w-screen h-screen fixed   z-50 top-0 grid place-items-center ">
-        {/* <div className="w-[400px] h-[420px] relative left-0">
-          <div className="w-[694px] h-[420px] left-0 top-0 absolute">
-            <div className="w-[694px] h-[391px] left-0 top-[28px] absolute bg-[#f2efef] rounded-bl-md rounded-br-md" />
-
-            <div className="w-[400px] h-[13px] left-0 top-[15px] absolute bg-white shadow-inner" />
-
-            <img
-              className="w-[1px] h-[4px] left-[687px] top-[20px] absolute"
-              src="https://via.placeholder.com/2x9"
-            />
-
-            <img
-              className="w-[8px] h-[8px] left-[672px] top-[18px] absolute rounded-full"
-              src="https://via.placeholder.com/16x16"
-            />
-
-            <div className="w-[620px] h-[10px] left-[48px] top-[17px] absolute bg-[#202124] rounded-[5px]" />
-
-            <img
-              className="w-[4px] h-[4px] left-[659px] top-[20px] absolute"
-              src="https://via.placeholder.com/9x8"
-            />
-
-            <div className="left-[60px] top-[19px] absolute text-white text-[5px] font-normal font-['Roboto'] tracking-tight">
-              google.com
-            </div>
-
-            <div className="left-[88px] top-[19px] absolute text-[#86888a] text-[5px] font-normal font-['Roboto'] tracking-tight">
-              /search
-            </div>
-
-            <img
-              className="w-[3px] h-[4px] left-[53px] top-[20px] absolute"
-              src="https://via.placeholder.com/6x8"
-            />
-
-            <div className="w-[694px] h-[15px] left-0 top-0 absolute bg-[#dde1e5] rounded-tl-md rounded-tr-md" />
-
-            <div className="w-[4px] h-[4px] left-[19px] top-[6px] absolute bg-[#27ca40] rounded-full border border-[#3eaf3f]" />
-
-            <div className="w-[4px] h-[4px] left-[12px] top-[6px] absolute bg-[#ffc130] rounded-full border border-[#e1a325]" />
-
-            <div className="w-[4px] h-[4px] left-[5px] top-[6px] absolute bg-[#ff6058] rounded-full border border-[#e14942]" />
-
-            <div className="w-[694px] h-[420px] left-0 top-0 absolute rounded-md border border-black" />
-
-            <div className="w-[75px] h-[13px] left-[29px] top-[2px] absolute bg-white rounded-tl-lg rounded-tr-lg" />
-
-            <div className="w-[35px] h-[4px] left-[44px] top-[6px] absolute text-[#242527] text-[4px] font-medium font-['Inter']">
-              EG PRODUCT NAME
-            </div>
-
-            <div className="w-[8px] h-[8px] left-[33px] top-[5px] absolute"></div>
-
-            <div className="w-[150px] h-[390px] left-[0.5px] top-[30px] absolute bg-white">
-              <div className="w-[124px] h-5 left-[19px] top-[59px] absolute bg-[#ebe8e9] rounded-[2px]">
-                <div className="w-[94px] h-[4px] left-[22px] top-[8px] absolute bg-[#dcdade] rounded-[19px]" />
-
-                <div className="w-2.5 h-2.5 left-[7.5px] top-[4px] absolute bg-[#d9d9d9]" />
-
-                <div className="w-[14px] h-[0px] left-[7.5px] top-[4px] absolute origin-top-left rotate-45 border border-[#f2efef]"></div>
-
-                <div className="w-[14px] h-[0px] left-[7.5px] top-[14px] absolute origin-top-left -rotate-45 border border-[#f2efef]"></div>
-              </div>
-
-              <div className="w-[134px] h-5 left-[8.5px] top-[36px] absolute bg-[#ebe8e9] rounded-[2px]">
-                <div className="w-[106px] h-[5px] left-[24px] top-[6px] absolute bg-[#dcdade] rounded-[19px]" />
-
-                <div className="w-2.5 h-2.5 left-[7.5px] top-[4px] absolute bg-[#d9d9d9]" />
-
-                <div className="w-[14px] h-[0px] left-[7.5px] top-[4px] absolute origin-top-left rotate-45 border border-[#f2efef]"></div>
-
-                <div className="w-[14px] h-[0px] left-[7.5px] top-[14px] absolute origin-top-left -rotate-45 border border-[#f2efef]"></div>
-              </div>
-            </div>
+    <div className="flex flex-col items-center justify-center w-full h-screen bg-gray-600">
+      {/* Window Frame */}
+      <div className="bg-white w-[800px] h-[600px] rounded-lg shadow-lg overflow-hidden">
+        {/* Top Bar (Window Header) */}
+        <div className="bg-gray-800 p-3 flex items-center justify-between text-white">
+          {/* Window Control Buttons */}
+          <div className="flex space-x-2">
+            <div className="w-3.5 h-3.5 rounded-full bg-red-500 cursor-pointer"></div>
+            <div className="w-3.5 h-3.5 rounded-full bg-yellow-500 cursor-pointer"></div>
+            <div className="w-3.5 h-3.5 rounded-full bg-green-500 cursor-pointer"></div>
           </div>
-        </div> */}
-        <div
-          className="h-[80%] w-[80%] bg-[#f0d5d5] rounded-md"
-          ref={ref}
-        ></div>
+          {/* Title */}
+          <div className="text-sm font-semibold">My Browser Window</div>
+          {/* Optional Right Side (Empty for now) */}
+          <div></div>
+        </div>
+
+        {/* Navigation Bar */}
+        <div className="bg-gray-900 text-white py-2 px-4">
+          <ul className="flex space-x-6">
+            <li className="cursor-pointer hover:text-gray-400">Home</li>
+            <li className="cursor-pointer hover:text-gray-400">About</li>
+            <li className="cursor-pointer hover:text-gray-400">Services</li>
+            <li className="cursor-pointer hover:text-gray-400">Contact</li>
+          </ul>
+        </div>
+
+        {/* Main Content Section */}
+        <div className="bg-gray-50 h-[calc(100%-120px)] p-4">
+          {/* Content goes here */}
+          <div className="flex justify-center items-center w-full h-full">
+            <div className="text-2xl text-gray-600">Welcome to My Browser Window</div>
+          </div>
+        </div>
+
+        {/* Footer (optional) */}
+        <div className="bg-gray-800 text-white text-xs py-1 text-center">
+          &copy; 2024 My Browser Window. All rights reserved.
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
-export default BrowserPreview;
+export default BrowserWindow;

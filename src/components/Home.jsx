@@ -89,7 +89,6 @@ const Home = () => {
   // }, []);
 
   const handleLogoDownload = (format) => {
-    // Get the SVG element as a string
     const svgElement = logoRef.current;
     const svgString = new XMLSerializer().serializeToString(svgElement);
 
@@ -98,13 +97,12 @@ const Home = () => {
       const svgBlob = new Blob([svgString], { type: "image/svg+xml" });
       const svgUrl = URL.createObjectURL(svgBlob);
 
-      // Create a download link for the SVG file
       const link = document.createElement("a");
       link.href = svgUrl;
-      link.download = "icon.svg"; // Set the download file name for SVG
+      link.download = "icon.svg";
       link.click(); // Trigger the download
     } else {
-      // If the format is PNG or JPEG, create an image from the SVG string using a Canvas
+      // Handle PNG or JPEG format
       const img = new Image();
       const svgBlob = new Blob([svgString], { type: "image/svg+xml" });
       const url = URL.createObjectURL(svgBlob);
@@ -114,18 +112,25 @@ const Home = () => {
         const canvas = document.createElement("canvas");
         const context = canvas.getContext("2d");
 
-        // Set canvas size to match the SVG dimensions (you should define dim.x and dim.y)
-        canvas.width = 512;
-        canvas.height = 512;
+        // Ensure the canvas size matches the SVG's natural size
+        const svgWidth = svgElement.getBoundingClientRect().width;
+        const svgHeight = svgElement.getBoundingClientRect().height;
+
+        canvas.width = svgWidth;
+        canvas.height = svgHeight;
 
         // Draw the image (SVG) onto the canvas
-        context.drawImage(img, 0, 0, 512, 512);
+        context.drawImage(img, 0, 0, svgWidth, svgHeight);
 
         // Create a download link for the image
         const link = document.createElement("a");
         link.href = canvas.toDataURL(`image/${format}`); // Convert canvas to PNG/JPEG
         link.download = `icon.${format}`; // Set the download file name
         link.click(); // Trigger the download
+      };
+
+      img.onerror = (error) => {
+        console.error("Image failed to load", error);
       };
 
       img.src = url; // Set the image source to the SVG Blob URL
@@ -137,7 +142,7 @@ const Home = () => {
       <div>
         <NavBar />
         <div className="min-h-screen w-full items-center flex justify-center py-5">
-          <div className="border border-gray-500 rounded-2xl m-h-screen w-[95%] main-container ">
+          <div className="border border-gray-500 rounded-2xl m-h-screen w-[95%] main-container min-[2100px]:w-[50%] min-[2100px]:h-[80%]">
             {/* product & color input and preview */}
             <div className="h-[55vh] bg-slate-50 rounded-2xl rounded-ee-none rounded-es-none flex items-center justify-center gap-2 min-[1500px]:h-[45vh] min-[1700px]:h-[42vh]  min-[1900px]:h-[37vh] min-[2100px]:h-[31vh] min-[2600px]:h-[25vh] min-[2800px]:h-[20vh]">
               {/* left side */}
@@ -195,24 +200,24 @@ const Home = () => {
                       <i className="fa-solid fa-chevron-down"></i>
                     </span>
                     {downloadOptionsVisible && (
-                      <div className="absolute top-[100%] right-0 w-[80px] h-[80px] bg-black">
+                      <div className="absolute top-[100%] right-0 w-[100px] bg-black shadow-lg overflow-hidden">
                         <div
-                          className="grid place-items-center bg-slate-500 border border-collapse h-[33%]"
+                          className="grid place-items-center text-white bg-gray-700 p-3 cursor-pointer transition-all duration-200 hover:bg-gray-600 "
                           onClick={() => handleLogoDownload("svg")}
                         >
                           SVG
                         </div>
                         <div
-                          className="grid place-items-center bg-slate-500 border border-collapse h-[33%]"
+                          className="grid place-items-center text-white bg-gray-700 p-3 cursor-pointer transition-all duration-200 hover:bg-gray-600"
                           onClick={() => handleLogoDownload("png")}
                         >
                           PNG
                         </div>
                         <div
-                          className="grid place-items-center bg-slate-500 border border-collapse h-[33%]"
+                          className="grid place-items-center text-white bg-gray-700 p-3 cursor-pointer transition-all duration-200 hover:bg-gray-600 rounded-b-lg"
                           onClick={() => handleLogoDownload("jpeg")}
                         >
-                          JPG
+                          JPEG
                         </div>
                       </div>
                     )}
@@ -226,11 +231,11 @@ const Home = () => {
               <h3 className="font-semibold">Favicon Preview:</h3>
               <div className="mt-3 w-full h-[1px] bg-gray-500"></div>
               <div className="w-full  flex  justify-center  mt-3 p-3 gap-2">
-                <div className="w-[45vw] border h-fit p-3">
+                <div className="w-[49%] border h-fit p-3">
                   <h3>Windows</h3>
                   <WindowsPreview />
                 </div>
-                <div className="w-[45vw] border h-fit p-3">
+                <div className="w-[49%] border h-fit p-3">
                   <h3>Mac</h3>
                   <MacPreview />
                 </div>
@@ -275,18 +280,18 @@ const Home = () => {
                     <ProductPreview color={each} key={key} />
                   ))}
                 {!previewVisible && (
-                  <div className="w-[95vw] overflow-auto h-[50vh]">
+                  <div className="w-[100%]  min-h-[20vh]">
                     <CopyBlock
                       text={logoRef.current.outerHTML}
                       theme={github}
                       language="svg"
                       customStyle={{
                         fontSize: "12px",
-                        width: "90vw",
+                        width: "100%",
                         text: "wrap",
                         overflow: "auto",
                         padding: "10px",
-                        minHeight: "50vh",
+                        minHeight: "20vh",
                       }}
                       onCopy={(e) => {
                         setTextCopied(true);
