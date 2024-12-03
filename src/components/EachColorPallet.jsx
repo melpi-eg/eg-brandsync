@@ -17,6 +17,7 @@ const EachColorPallet = ({ color, index }) => {
       height="50px"
       style={{ border: index === selectedIndex ? "1px solid black" : "" ,transition:"all 0.2s ease-in-out"}}
       onClick={() => dispatch(updateSelectedIndex(index))}
+      className="hover:cursor-pointer"
     >
       <rect
         x="1.7403"

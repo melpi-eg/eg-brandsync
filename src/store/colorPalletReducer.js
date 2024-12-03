@@ -1,21 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   value: [
-    "#A3F1D2",
-    "#E8B7D5",
-    "#C3A0F4",
-    "#F6A927",
-    "#9D76E4",
-    "#F3B762",
-    "#D56F3B",
-    "#C8A9E3",
-    "#2B9F8C",
-    "#4F6F2A",
-    "#1E9D67",
-    "#D3E62F",
+    "#F68644",
+    "#E1B120",
+    "#A89C96",
+    "#7D6D62",
+    "#A2C093",
+    "#77A781",
+    "#44706A",
+    "#95B6B9",
+    "#395F6F",
   ],
   inputValue: "Product Name",
+  inputSvg: "Product Name",
   selectedIndex: 3,
 };
 
@@ -24,6 +23,17 @@ export const colorPalletSlice = createSlice({
   initialState,
   reducers: {
     updateInput: (state, action) => {
+      let data = "";
+      (async () => {
+        try {
+          const res = await axios.get(
+            `http://localhost:3002/api/get-svg-for-text?content=${action.payload}`
+          );
+          console.log(JSON.stringify(res.data.svg).replace(/\\"/g, '"'));
+          data = JSON.stringify(res.data.svg).replace(/\\"/g, '"');
+        } catch (error) {}
+      })();
+      state.inputSvg = data;
       state.inputValue = action.payload;
     },
     updateSelectedIndex: (state, action) => {

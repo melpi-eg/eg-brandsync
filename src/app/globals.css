@@ -16,3 +16,46 @@
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
 }
+
+@media (max-width: 2540) {
+  .main-container {
+    width: 50%;
+  }
+}
+
+@media (max-width: 2414) {
+  .main-container {
+    width: 60%;
+  }
+}
+
+@media (max-width: 2010) {
+  .main-container {
+    width: 80%;
+  }
+}
+
+@media (max-width:1628) {
+  .main-container{
+    width: 90%;
+  }
+}
+
+@media (max-width:1426) {
+  .main-container{
+    width: 95%;
+  }
+}
+
+@media (min-width:2462) {
+  .main-container{
+    width: 50%;
+  }
+}
+
+@media (min-width:2422) {
+  .main-container{
+    width: 60%;
+  }
+}
+
