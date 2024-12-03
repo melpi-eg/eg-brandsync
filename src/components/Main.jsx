@@ -18,6 +18,7 @@ const Main = () => {
 
   // gsap animations:
   useGSAP(() => {
+    if (!refs.current) return;
     const timeline = gsap.timeline();
 
     timeline.from(refs.current, {
@@ -31,7 +32,7 @@ const Main = () => {
       width: "250px",
       duration: 0.5,
     });
-  }, []);
+  }, [refs.current]);
 
   return (
     <div className="h-screen w-full bg-white">

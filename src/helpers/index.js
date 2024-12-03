@@ -1,11 +1,24 @@
 import JSZip from "jszip";
 
+function stringToUint8Array(binaryString) {
+  const byteArray = new Uint8Array(binaryString.length);
+  for (let i = 0; i < binaryString.length; i++) {
+    byteArray[i] = binaryString.charCodeAt(i) & 0xff; // Get byte value
+  }
+  return byteArray;
+}
+
 export const handleCreateAndDownloadZip = async (files) => {
   try {
     // Create a new JSZip instance
     const zip = new JSZip();
 
-    files.forEach(({ name, content }) => {
+    files.forEach(({ name, content, binary }) => {
+      if (binary) {
+        // const binaryData = stringToUint8Array(content);
+        zip.file(name, content);
+        return;
+      }
       zip.file(name, content);
     });
 

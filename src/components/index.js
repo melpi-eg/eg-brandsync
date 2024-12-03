@@ -4,6 +4,7 @@ import ContextWrapper from "./ContextWrapper";
 import WindowsPreview from "./WindowsPreview";
 import MacPreview from "./MacPreview";
 import LogoPreview from "./LogoPreview";
+import BrowserPreview from "./BrowserPreview";
 
 export {
   EachColorPallet,
@@ -12,4 +13,5 @@ export {
   WindowsPreview,
   MacPreview,
   LogoPreview,
+  BrowserPreview,
 };
