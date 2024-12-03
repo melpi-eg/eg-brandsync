@@ -89,52 +89,54 @@ const Home = () => {
   // }, []);
 
   const handleLogoDownload = (format) => {
-    const svgElement = logoRef.current;
-    const svgString = new XMLSerializer().serializeToString(svgElement);
+    try {
+      const svgElement = logoRef.current;
+      const svgString = new XMLSerializer().serializeToString(svgElement);
 
-    if (format === "svg") {
-      // If the format is SVG, create a Blob and trigger a download
-      const svgBlob = new Blob([svgString], { type: "image/svg+xml" });
-      const svgUrl = URL.createObjectURL(svgBlob);
+      if (format === "svg") {
+        // If the format is SVG, create a Blob and trigger a download
+        const svgBlob = new Blob([svgString], { type: "image/svg+xml" });
+        const svgUrl = URL.createObjectURL(svgBlob);
 
-      const link = document.createElement("a");
-      link.href = svgUrl;
-      link.download = "icon.svg";
-      link.click(); // Trigger the download
-    } else {
-      // Handle PNG or JPEG format
-      const img = new Image();
-      const svgBlob = new Blob([svgString], { type: "image/svg+xml" });
-      const url = URL.createObjectURL(svgBlob);
-
-      img.onload = () => {
-        // Create a canvas to draw the image on
-        const canvas = document.createElement("canvas");
-        const context = canvas.getContext("2d");
-
-        // Ensure the canvas size matches the SVG's natural size
-        const svgWidth = svgElement.getBoundingClientRect().width;
-        const svgHeight = svgElement.getBoundingClientRect().height;
-
-        canvas.width = svgWidth;
-        canvas.height = svgHeight;
-
-        // Draw the image (SVG) onto the canvas
-        context.drawImage(img, 0, 0, svgWidth, svgHeight);
-
-        // Create a download link for the image
         const link = document.createElement("a");
-        link.href = canvas.toDataURL(`image/${format}`); // Convert canvas to PNG/JPEG
-        link.download = `icon.${format}`; // Set the download file name
+        link.href = svgUrl;
+        link.download = "icon.svg";
         link.click(); // Trigger the download
-      };
+      } else {
+        // Handle PNG or JPEG format
+        const img = new Image();
+        const svgBlob = new Blob([svgString], { type: "image/svg+xml" });
+        const url = URL.createObjectURL(svgBlob);
 
-      img.onerror = (error) => {
-        console.error("Image failed to load", error);
-      };
+        img.onload = () => {
+          // Create a canvas to draw the image on
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
 
-      img.src = url; // Set the image source to the SVG Blob URL
-    }
+          // Ensure the canvas size matches the SVG's natural size
+          const svgWidth = svgElement.getBoundingClientRect().width;
+          const svgHeight = svgElement.getBoundingClientRect().height;
+
+          canvas.width = svgWidth;
+          canvas.height = svgHeight;
+
+          // Draw the image (SVG) onto the canvas
+          context.drawImage(img, 0, 0, svgWidth, svgHeight);
+
+          // Create a download link for the image
+          const link = document.createElement("a");
+          link.href = canvas.toDataURL(`image/${format}`); // Convert canvas to PNG/JPEG
+          link.download = `icon.${format}`; // Set the download file name
+          link.click(); // Trigger the download
+        };
+
+        img.onerror = (error) => {
+          console.error("Image failed to load", error);
+        };
+
+        img.src = url; // Set the image source to the SVG Blob URL
+      }
+    } catch (error) {}
   };
 
   return (
