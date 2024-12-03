@@ -14,10 +14,10 @@ const EachColorPallet = ({ color, index }) => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 47.797 21.3566"
       width="150px"
-      height="50px"
+      height="60px"
       style={{ border: index === selectedIndex ? "1px solid black" : "" ,transition:"all 0.2s ease-in-out"}}
       onClick={() => dispatch(updateSelectedIndex(index))}
-      className="hover:cursor-pointer"
+      className="hover:cursor-pointer pb-2"
     >
       <rect
         x="1.7403"

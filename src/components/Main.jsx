@@ -44,14 +44,14 @@ const Main = () => {
         {/* top section */}
         <div className="">
           <h1 className="text-[40px] font-semibold text-center" ref={addToRefs}>
-            Consistet Branding Made Effortless
+            Consistent Branding Made Effortless
           </h1>
           <p
             className="text-center w-[75%] m-auto text-animation"
             ref={addToRefs}
           >
             No Designers? No Problem ! BrandSync simplifies the process ,
-            ensuring every prodcut shines with EG&apos;s logo, ready to use in
+            ensuring every product shines with EG&apos;s logo, ready to use in
             seconds
           </p>
           <p

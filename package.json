@@ -20,7 +20,8 @@
     "react-code-blocks": "^0.1.6",
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "react-redux": "^9.1.2",
-    "string-to-svg": "^4.0.1"
+    "string-to-svg": "^4.0.1",
+    "svg-to-ico": "^1.0.15"
   },
   "devDependencies": {
     "eslint": "^8",

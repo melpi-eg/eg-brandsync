@@ -1,6 +1,7 @@
 "use server";
 import { NextResponse } from "next/server";
-import { getSVG, loadFont } from "string-to-svg";
+import svg_to_ico from "svg-to-ico";
+import fs from "fs";
 
 export async function GET(req) {
   try {

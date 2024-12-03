@@ -7,6 +7,7 @@ const MacPreview = () => {
   const selectedIndex = useSelector(
     (state) => state.color_pallet.selectedIndex
   );
+
   return (
     <div className="relative">
       <svg
