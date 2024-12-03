@@ -137,9 +137,9 @@ const Home = () => {
       <div>
         <NavBar />
         <div className="min-h-screen w-full items-center flex justify-center py-5">
-          <div className="border border-gray-500 rounded-2xl min-h-screen w-[95%] main-container">
+          <div className="border border-gray-500 rounded-2xl m-h-screen w-[95%] main-container ">
             {/* product & color input and preview */}
-            <div className="h-[55vh] bg-slate-50 rounded-2xl rounded-ee-none rounded-es-none flex items-center justify-center gap-2 min-[1500px]:h-[45vh] min-[1700px]:h-[42vh]  min-[1900px]:h-[37vh] min-[2100px]:h-[31vh]">
+            <div className="h-[55vh] bg-slate-50 rounded-2xl rounded-ee-none rounded-es-none flex items-center justify-center gap-2 min-[1500px]:h-[45vh] min-[1700px]:h-[42vh]  min-[1900px]:h-[37vh] min-[2100px]:h-[31vh] min-[2600px]:h-[25vh] min-[2800px]:h-[20vh]">
               {/* left side */}
               <div className="h-full w-[50vw]  p-4 pt-3">
                 <h3 className="font-semibold">Product Name :</h3>
