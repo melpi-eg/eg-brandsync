@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { NavBar } from "@/components";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const Main = () => {
   const refs = useRef([]);
   const lineRef = useRef(null);
   const router = useRouter();
@@ -50,7 +50,7 @@ const page = () => {
             ref={addToRefs}
           >
             No Designers? No Problem ! BrandSync simplifies the process ,
-            ensuring every prodcut shines with EG's logo, ready to use in
+            ensuring every prodcut shines with EG&apos;s logo, ready to use in
             seconds
           </p>
           <p
@@ -72,4 +72,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Main;
