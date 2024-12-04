@@ -8,7 +8,7 @@ import {
   BrowserPreview,
 } from "@/components";
 import ProductPreview from "@/components/ProductPreview";
-import { updateInput } from "@/store/colorPalletReducer";
+import { updateInput, updateInputSvg } from "@/store/colorPalletReducer";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CopyBlock, github } from "react-code-blocks";
@@ -157,6 +157,25 @@ const Home = () => {
                   placeholder="EG Product Name"
                   value={inputVal}
                   onInput={(e) => {
+                    (async () => {
+                      try {
+                        const res = await axios.get(
+                          `http://localhost:3002/api/get-svg-for-text?content=${e.target.value}`
+                        );
+                        console.log(
+                          JSON.stringify(res.data.svg)
+                            .replace(/\\"/g, '"')
+                            .replace(/<svg[^>]*>|<\/svg>/g, "")
+                        );
+                        dispatch(
+                          updateInputSvg(
+                            res.data.svg
+                              .replace(/\\"/g, '"')
+                              .replace(/<svg[^>]*>|<\/svg>/g, "")
+                          )
+                        );
+                      } catch (error) {}
+                    })();
                     dispatch(updateInput(e.target.value));
                   }}
                 />
@@ -356,13 +375,16 @@ const Home = () => {
                   })();
                 }}
               >
-                {"  "} {zipDownloadVisible ? "Downloading..." : "Download ZIP"} <i className="fa-solid fa-file-zipper"></i>
+                {"  "} {zipDownloadVisible ? "Downloading..." : "Download ZIP"}{" "}
+                <i className="fa-solid fa-file-zipper"></i>
               </button>
             </div>
           </div>
         </div>
       </div>
-      {browserPreviewVisible && <BrowserPreview />}
+      {browserPreviewVisible && (
+        <BrowserPreview setBrowserPreviewVisible={setBrowserPreviewVisible} />
+      )}
     </>
   );
 };

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 const initialState = {
   value: [
@@ -23,26 +22,19 @@ export const colorPalletSlice = createSlice({
   initialState,
   reducers: {
     updateInput: (state, action) => {
-      let data = "";
-      (async () => {
-        try {
-          const res = await axios.get(
-            `http://localhost:3002/api/get-svg-for-text?content=${action.payload}`
-          );
-          console.log(JSON.stringify(res.data.svg).replace(/\\"/g, '"'));
-          data = JSON.stringify(res.data.svg).replace(/\\"/g, '"');
-        } catch (error) {}
-      })();
-      state.inputSvg = data;
       state.inputValue = action.payload;
     },
     updateSelectedIndex: (state, action) => {
       state.selectedIndex = action.payload;
     },
+    updateInputSvg: (state, action) => {
+      state.inputSvg = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { updateInput, updateSelectedIndex } = colorPalletSlice.actions;
+export const { updateInput, updateSelectedIndex, updateInputSvg } =
+  colorPalletSlice.actions;
 
 export default colorPalletSlice.reducer;

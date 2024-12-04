@@ -22,6 +22,9 @@ export const handleCreateAndDownloadZip = async (files) => {
       zip.file(name, content);
     });
 
+
+    // zip.file("favicon.ico","/favicon.c764ea89.ico")
+
     // Generate the ZIP file as a Blob
     const zipBlob = await zip.generateAsync({ type: "blob" });
 

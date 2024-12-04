@@ -1,6 +1,7 @@
 "use client";
 import { useSelector } from "react-redux";
 import React from "react";
+import parse from "html-react-parser";
 
 const LogoPreview = ({ logoRef }) => {
   const data = useSelector((state) => state.color_pallet.value);
@@ -61,7 +62,9 @@ const LogoPreview = ({ logoRef }) => {
         >
           {productName}
         </text>
+        {/* {parse(svgText)} */}
       </svg>
+      {/* <div className="" dangerouslySetInnerHTML={{ __html: svgText }}></div> */}
     </>
   );
 };
